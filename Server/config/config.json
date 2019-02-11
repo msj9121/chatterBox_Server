@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "test",
-    "database": "myapp",
+    "database": "myAppDB",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
