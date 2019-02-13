@@ -23,13 +23,18 @@ module.exports = server => {
     });
     const interval = setInterval(async () => {
       if (ws.readyState === ws.OPEN) {
-        console.log("서버-room", room);
+        const rooms = await db.Room.findAll({});
         const comments = await db.Comment.findAll({
           where: {
             roomName: room
           }
         });
-        ws.send(JSON.stringify(comments));
+        const posts = {
+          rooms,
+          comments
+        }
+
+        ws.send(JSON.stringify(posts));
       }
     }, 3000);
     ws.interval = interval;
